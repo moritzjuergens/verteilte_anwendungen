@@ -1,2 +1,2 @@
 # Procfile
-web: npm run serve
+web: npm start
