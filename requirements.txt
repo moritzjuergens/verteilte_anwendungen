@@ -1,6 +1,6 @@
-import os
-from flask import Flask, Response, request
-import requests
-import json
-from supabase import create_client, Client
-from flask_cors import CORS
+os
+flask 
+requests
+json
+supabase 
+flask_cors 
