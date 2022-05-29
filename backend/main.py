@@ -4,8 +4,12 @@ import requests
 import json
 from supabase import create_client, Client
 from flask_cors import CORS
+from dotenv import load_dotenv
 
-app = Flask(__name__)
+load_dotenv()
+
+app = Flask(__name__, static_folder='../client/dist/',    static_url_path='/')
+
 
 CORS(app, resources={r'/*': {'origins': '*'}})
 
@@ -52,3 +56,8 @@ def store_results():
     except Exception as err:
         print(err)
         return Response(status=500)
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    app.run(host='0.0.0.0', port=port)
