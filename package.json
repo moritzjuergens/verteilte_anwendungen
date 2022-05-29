@@ -5,7 +5,8 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "eslint": "^7.13.0",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "bootstrap-vue": "^2.22.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
