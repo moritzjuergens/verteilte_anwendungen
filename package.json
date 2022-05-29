@@ -1,7 +1,11 @@
 {
-  "name": "frontend",
+  "name": "verteilte_anwendungen",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "16.x",
+    "npm": "6.x"
+  },
   "scripts": {
     "start": "gunicorn server.app:app",
     "build": "cd client && npm run build"
