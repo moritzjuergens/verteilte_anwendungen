@@ -7,7 +7,3 @@ GET http://localhost:5000/questions
 POST http://localhost:5000/results
 Content-Type: application/json
 
-{
-    "player": "mj-the-bruh",
-    "score": 54
-}
