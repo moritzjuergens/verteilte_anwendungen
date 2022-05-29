@@ -4,9 +4,7 @@ import requests
 import json
 from supabase import create_client, Client
 from flask_cors import CORS
-from dotenv import load_dotenv
 
-load_dotenv()
 
 app = Flask(__name__, static_folder='../client/dist/',    static_url_path='/')
 
