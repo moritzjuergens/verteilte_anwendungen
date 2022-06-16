@@ -32,13 +32,13 @@ def highscores():
 
 
 @app.route("/questions", methods=["GET"])
-def proxy_questions():
-    res = requests.get("https://opentdb.com/api.php?amount=10&type=multiple")
-    if res.status_code != 200:
-        return Response(status=res.status_code, response="could not load questions from remote API endpoint")
-
-    questions = res.json()
-    return Response(json.dumps(questions["results"]), mimetype='application/json')
+def questions():
+    try:
+        res = client.postgrest.from_table("questions").select("*").execute()
+        return Response(json.dumps(res.data), mimetype='application/json')
+    except Exception as err:
+        print(err)
+        return Response(status=500)
 
 
 @app.route("/results", methods=["POST"])
@@ -49,6 +49,22 @@ def store_results():
         client.postgrest.from_table("highscores").upsert({
             "name": payload["player"],
             "score": payload["score"]
+        }).execute()
+        return Response(status=200)
+    except Exception as err:
+        print(err)
+        return Response(status=500)
+
+
+@app.route("/answers", methods=["POST"])
+def store_results():
+    payload = request.json
+
+    try:
+        client.postgrest.from_table("questions").upsert({
+            "question": payload["question"],
+            "answers": payload["answers"],
+            "corr_idx": payload["corr_idx"]
         }).execute()
         return Response(status=200)
     except Exception as err:
